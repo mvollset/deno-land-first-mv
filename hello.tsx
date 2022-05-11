@@ -1,4 +1,4 @@
-/** @jsx h */
+/** @tsx h */
 import { serve } from "https://deno.land/std@0.137.0/http/server.ts";
 import { h } from "https://esm.sh/preact@10.5.15";
 import { renderToString } from "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15";
