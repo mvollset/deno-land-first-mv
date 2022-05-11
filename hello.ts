@@ -1,5 +1,18 @@
-const url = Deno.args[0];
-const res = await fetch(url);
+/** @jsx h */
+import { serve } from "https://deno.land/std@0.137.0/http/server.ts";
+import { h } from "https://esm.sh/preact@10.5.15";
+import { renderToString } from "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15";
 
-const body = new Uint8Array(await res.arrayBuffer());
-await Deno.stdout.write(body);
+function handler(_req: Request): Response {
+  const page = (
+    <div>
+      <h1>Current time</h1>
+      <p>{new Date().toLocaleString()} Jalla</p>
+    </div>
+  );
+  const html = renderToString(page);
+  return new Response(html, {
+    headers: { "content-type": "text/html; charset=utf-8" },
+  });
+}
+serve(handler);
